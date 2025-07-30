@@ -11,46 +11,44 @@ def input_integer(message): #INGRESAR UN ENTERO Y VERIFICAR QUE SU ENTRADA SEA V
         except ValueError: print(error_mesagge)
     return value
 
-n = input_integer(" Ingresa la cantidad que deseas agreagar: ")
+n = input_integer("▶  Ingresa la cantidad que deseas agreagar: ")
 for i in range(n):
-    print(f"Producto {i+1}")
+    print("-"*20+f"PRODUCTO {i+1}"+"-"*20)
     while True:
-        code = input("Ingresa un codigo (Ej: P001): ")
-        if code in prods: break
-        else: print("\nCodigo existente intente de nuevo")
-    prod = input("Ingresa el nombre de tu producto: ")
-    print("1) Hombre\n2) Mujer\n3) Niño")
-    cat =  input_integer("Ingresa la categoria")
-    print("1) S\n2) M\n3) L\n4) XL")
-    tal = input_integer("Ingresa la categoria")
+        code = input("▶  Ingresa un codigo (Ej: P001): ")
+        if code in prods: print("\nCodigo existente intente de nuevo")
+        else: break
+    prod = input("▶  Ingresa el nombre de tu producto: ")
+    print("   1) Hombre\n   2) Mujer\n   3) Niño")
+    cat_sel =  input_integer("▶  Ingresa la categoria: ")
+    print("   1) S\n   2) M\n   3) L\n   4) XL")
+    tal = input_integer("▶  Ingresa la talla: ")
     while True:
         while True:
             try:
-                price = float(input("Ingrese el precio: "))
+                price = float(input("▶  Ingrese el precio: "))
                 break
             except ValueError: print(error_mesagge)
         if price > 0: break
         else: print(error_mesagge)
     while True:
-        stock = input_integer("Ingrese la cantidad del stock: ")
+        stock = input_integer("▶  Ingrese la cantidad del stock: ")
         if stock > 0: break
         else: print(error_mesagge)
 
     prods[code] = {
         'name': prod,
-        'categoria' : cat,
-        'talla': tal,
+        'categoria' : cat[cat_sel-1],
+        'talla': tall[tal-1],
         'c/u': price,
         'stock' : stock
     }
-
-
 print("-"*15+"PRODUCTOS"+"-"*15)
 print(f"{'codigo':<10}{'nombre':<50}{'categoria':<20}{'talla':<20}{'Precio C/U':<20}{'Stock':<20}{'Valor Total':<25}")
 for i,j in prods.items():
     print(f"{i:<10}{j['name']:<50}{j['categoria']:<20}{j['talla']:<20}{j['c/u']:<20}{j['stock']:<20}{j['c/u']*j['stock']:<25}")
 
-code = input("Ingresa un codigo (Ej: P001): ")
+code = input("▶  Ingresa un codigo (Ej: P001): ")
 if code in prods:
     print(f"{'nombre':<50}{'categoria':<20}{'talla':<20}{'Precio C/U':<20}{'Stock':<20}{'Valor Total':<25}")
 
